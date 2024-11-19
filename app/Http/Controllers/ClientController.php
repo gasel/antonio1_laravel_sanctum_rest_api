@@ -6,7 +6,7 @@ use App\Models\Client;
 use App\Http\Controllers\Controller;
 //use App\Http\Requests\StoreClientRequest;
 //use App\Http\Requests\UpdateClientRequest;
-use Illuminte\Http\Request;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
