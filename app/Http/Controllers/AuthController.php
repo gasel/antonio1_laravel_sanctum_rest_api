@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -21,6 +22,8 @@ class AuthController extends Controller
         $user = User::create($fields);
 
         $token = $user->createToken($user->name);
+
+        event(new Registered($user));
 
         return [
             'user' => $user,
@@ -49,10 +52,19 @@ class AuthController extends Controller
         ];
     }
 
-    public function logout (Request $resuqest) {
+    public function logout (Request $request) {
 
         $request->user()->token()->delete();
         return ['message' => 'User logged out.'];
+    }
+
+    public function verify_email (Request $request) {
+    }
+
+    public function forgot_password (Request $request) {
+    }
+
+    public function reset_password (Request $request) {
     }
 
 }
